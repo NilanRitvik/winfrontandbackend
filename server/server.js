@@ -18,9 +18,13 @@ app.use(cors({
 app.use(helmet());
 
 // Database Connection
-mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/roulette-prediction')
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.log(err));
+const LOCAL_FALLBACK = 'mongodb+srv://adminUser:5POPDN5Cwf2IipzZ@cluster0.ev4kdjx.mongodb.net/roulette-db?retryWrites=true&w=majority';
+
+mongoose.connect(process.env.MONGO_URI || LOCAL_FALLBACK)
+    .then(() => console.log('MongoDB Connected Successfully'))
+    .catch(err => {
+        console.error('MongoDB Connection Error:', err);
+    });
 
 // Routes
 const authRoute = require('./routes/auth');

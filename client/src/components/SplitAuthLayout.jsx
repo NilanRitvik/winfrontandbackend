@@ -39,14 +39,17 @@ const SplitAuthLayout = ({ children, title, subtitle }) => {
                 {/* LEFT SIDE: Marketing & Info */}
                 <div className="hidden lg:flex w-1/2 flex-col p-12 justify-between border-r border-white/5 bg-transparent">
                     {/* Logo Area */}
-                    <Link to="/" className="flex items-center gap-3 w-fit hover:opacity-80 transition-opacity">
-                        <img src={win365Logo} alt="Win365 Logo" className="w-12 h-12 object-contain" />
-                        <div>
-                            <h1 className="text-2xl font-serif font-bold text-white tracking-widest">WIN365</h1>
-                            <p className="text-[#d4af37] text-xs uppercase tracking-[0.3em]">AI Prediction Engine</p>
+                    <div className="flex items-center gap-3 mb-8">
+                        <img src={win365Logo} alt="Win365 Logo" className="w-12 h-12" />
+                        <div className="flex flex-col">
+                            <h1 className="text-3xl font-black text-[#d4af37] tracking-tighter leading-none">
+                                WIN365
+                            </h1>
+                            <span className="text-[10px] text-[#d4af37]/60 font-bold tracking-[0.2em] uppercase">
+                                AI Prediction Engine
+                            </span>
                         </div>
-                    </Link>
-
+                    </div>
                     {/* Content */}
                     <div className="space-y-8 max-w-lg mt-10">
                         <div>

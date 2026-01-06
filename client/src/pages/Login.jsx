@@ -89,6 +89,12 @@ const Login = () => {
                     <Link to="/register" className="text-[#d4af37] hover:text-white text-sm font-bold uppercase tracking-wider hover:underline transition-all mt-2 inline-block">
                         Apply for Membership
                     </Link>
+
+                    <div className="mt-6 pt-4 border-t border-white/5">
+                        <Link to="/admin-login" className="text-[10px] text-gray-700 hover:text-red-500 uppercase tracking-widest transition-colors">
+                            House Access
+                        </Link>
+                    </div>
                 </div>
 
             </form>

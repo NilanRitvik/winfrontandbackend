@@ -11,7 +11,10 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: true, // Reflects the request origin, allowing all
+    credentials: true
+}));
 app.use(helmet());
 
 // Database Connection

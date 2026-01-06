@@ -33,6 +33,11 @@ const AdminLogin = () => {
 
     return (
         <SplitAuthLayout title="House Admin" subtitle="Restricted Access. Authorized Personnel Only.">
+            {/* DEBUG: Verify API URL */}
+            <div className="text-[10px] text-gray-500 text-center mb-4 font-mono select-all">
+                Target: {API_BASE_URL}
+            </div>
+
             {error && (
                 <div className="bg-red-950/50 border border-red-600 text-red-400 text-sm p-3 rounded mb-6 text-center">
                     {error}

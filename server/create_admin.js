@@ -1,40 +1,38 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const User = require('./models/User');
+const Admin = require('./models/Admin');
 
 const MONGO_URI = 'mongodb+srv://adminUser:5POPDN5Cwf2IipzZ@cluster0.ev4kdjx.mongodb.net/roulette-db?retryWrites=true&w=majority';
 
-const createLegacyAdmin = async () => {
+const createAdmin = async () => {
     try {
         await mongoose.connect(MONGO_URI);
-        console.log('MongoDB Connected for Legacy Admin Seed');
+        console.log('MongoDB Connected for Admin Seed');
 
         const adminEmail = 'purusothhrm@gmail.com';
         const adminPassword = 'Win365Admin2026';
-        const username = 'AdminUserLegacy';
+        const username = 'SuperAdmin';
 
         const hashedPassword = await bcrypt.hash(adminPassword, 10);
 
-        // CHECK USER COLLECTION (Old Logic)
-        const existingUser = await User.findOne({ email: adminEmail });
+        // CHECK ADMIN COLLECTION (Correct!)
+        const existingAdmin = await Admin.findOne({ email: adminEmail });
 
-        if (existingUser) {
-            console.log('Legacy Admin User exists. Updating role...');
-            existingUser.password = hashedPassword;
-            existingUser.role = 'admin';
-            // existingUser.isAdmin = true; // Some old schemas might check this
-            await existingUser.save();
-            console.log('Legacy Admin User updated.');
+        if (existingAdmin) {
+            console.log('Admin exists. Updating password...');
+            existingAdmin.password = hashedPassword;
+            await existingAdmin.save();
+            console.log('Admin password updated.');
         } else {
-            const newUser = new User({
+            const newAdmin = new Admin({
                 username,
                 email: adminEmail,
                 password: hashedPassword,
                 role: 'admin'
             });
 
-            await newUser.save();
-            console.log('Legacy Admin User created in USER collection.');
+            await newAdmin.save();
+            console.log('Admin created in ADMIN collection.');
         }
 
         mongoose.connection.close();
@@ -44,4 +42,4 @@ const createLegacyAdmin = async () => {
     }
 };
 
-createLegacyAdmin();
+createAdmin();

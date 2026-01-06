@@ -30,9 +30,10 @@ app.use((req, res, next) => {
 app.get('/api/test', (req, res) => res.json({ status: 'ok', msg: 'Server is working' }));
 
 // Database Connection
-const LOCAL_FALLBACK = 'mongodb+srv://adminUser:5POPDN5Cwf2IipzZ@cluster0.ev4kdjx.mongodb.net/roulette-db?retryWrites=true&w=majority';
+// FORCE CORRECT URI (Bypassing potential bad env vars)
+const MONGO_URI = 'mongodb+srv://adminUser:5POPDN5Cwf2IipzZ@cluster0.ev4kdjx.mongodb.net/roulette-db?retryWrites=true&w=majority';
 
-mongoose.connect(process.env.MONGO_URI || LOCAL_FALLBACK)
+mongoose.connect(MONGO_URI)
     .then(() => console.log('MongoDB Connected Successfully'))
     .catch(err => {
         console.error('MongoDB Connection Error:', err);

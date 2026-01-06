@@ -38,7 +38,9 @@ const connectToDatabase = async () => {
         return;
     }
     try {
-        await mongoose.connect(process.env.MONGO_URI || LOCAL_FALLBACK);
+        // FORCE CORRECT URI
+        const MONGO_URI = 'mongodb+srv://adminUser:5POPDN5Cwf2IipzZ@cluster0.ev4kdjx.mongodb.net/roulette-db?retryWrites=true&w=majority';
+        await mongoose.connect(MONGO_URI);
         isConnected = true;
         console.log('MongoDB Connected Successfully (Serverless)');
     } catch (err) {

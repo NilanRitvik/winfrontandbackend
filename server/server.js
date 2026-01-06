@@ -37,7 +37,7 @@ app.use('/api/tickets', ticketRoute);
 app.use('/api/admin-ai', adminAIRoute);
 
 app.get('/', (req, res) => {
-    res.send('Roulette Prediction API');
+    res.json({ message: 'Roulette Prediction API - V2 LIVE', timestamp: new Date() });
 });
 
 // For Vercel/Serverless

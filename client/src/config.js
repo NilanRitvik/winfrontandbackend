@@ -5,5 +5,5 @@
 const isProduction = import.meta.env.MODE === 'production';
 
 export const API_BASE_URL = isProduction
-    ? 'https://your-production-url.com/api' // Replace with actual URL upon deployment
+    ? 'https://win365v01.vercel.app/api'
     : 'http://localhost:5000/api';

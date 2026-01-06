@@ -1,50 +1,44 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const User = require('./models/User'); // Adjust path as needed
-const dotenv = require('dotenv');
+const Admin = require('./models/Admin');
 
-dotenv.config();
-
-const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://adminUser:5POPDN5Cwf2IipzZ@cluster0.ev4kdjx.mongodb.net/roulette-db?retryWrites=true&w=majority';
+const MONGO_URI = 'mongodb+srv://adminUser:5POPDN5Cwf2IipzZ@cluster0.ev4kdjx.mongodb.net/roulette-db?retryWrites=true&w=majority';
 
 const createAdmin = async () => {
     try {
         await mongoose.connect(MONGO_URI);
         console.log('MongoDB Connected for Seed Script');
 
-        const email = 'purusothhrm@gmail.com';
-        const password = '$win365@2026ai$';
+        const adminEmail = 'purusothhrm@gmail.com';
+        const adminPassword = 'Win365Admin2026';
         const username = 'AdminUser';
 
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
+        const hashedPassword = await bcrypt.hash(adminPassword, 10);
 
-        const existingUser = await User.findOne({ email });
+        // CHECK ADMIN COLLECTION
+        const existingUser = await Admin.findOne({ email: adminEmail });
 
         if (existingUser) {
-            console.log('User already exists. Updating to Admin Role and resetting password...');
+            console.log('Admin already exists. Resetting password...');
             existingUser.password = hashedPassword;
-            existingUser.role = 'admin';
-            existingUser.isAdmin = true;
             await existingUser.save();
-            console.log('Admin user updated successfully.');
+            console.log('Admin password reset successfully.');
         } else {
-            console.log('Creating new Admin user...');
-            const newAdmin = new User({
+            const newAdmin = new Admin({
                 username,
-                email,
+                email: adminEmail,
                 password: hashedPassword,
-                role: 'admin',
-                isAdmin: true
+                role: 'admin'
             });
+
             await newAdmin.save();
-            console.log('Admin user created successfully.');
+            console.log('New Admin created in ADMIN collection successfully.');
         }
 
-        mongoose.disconnect();
-    } catch (error) {
-        console.error('Error creating admin:', error);
-        mongoose.disconnect();
+        mongoose.connection.close();
+    } catch (err) {
+        console.error(err);
+        mongoose.connection.close();
     }
 };
 

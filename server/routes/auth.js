@@ -2,6 +2,7 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const Admin = require('../models/Admin');
 
 // Register
 router.post('/register', async (req, res) => {
@@ -64,20 +65,17 @@ router.post('/admin-login', async (req, res) => {
     try {
         const { email, password } = req.body;
 
+        // DB Check in Dedicated ADMIN Collection
+        const user = await Admin.findOne({ email });
+        if (!user) return res.status(400).json({ msg: 'Invalid credentials (Admin Not Found)' });
 
-
-        // DB Check
-        const user = await User.findOne({ email });
-        if (!user) return res.status(400).json({ msg: 'Invalid credentials' });
-
-        if (user.role !== 'admin') return res.status(403).json({ msg: 'Access denied. Admins only.' });
-
+        // Verify Hash
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
+        if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials (Password)' });
 
-        const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET || 'secret', { expiresIn: '12h' });
+        const token = jwt.sign({ id: user._id, role: 'admin' }, process.env.JWT_SECRET || 'secret', { expiresIn: '12h' });
 
-        res.json({ token, user: { id: user._id, username: user.username, role: user.role } });
+        res.json({ token, user: { id: user._id, username: user.username, role: 'admin' } });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

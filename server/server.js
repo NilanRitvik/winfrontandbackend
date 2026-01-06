@@ -11,7 +11,17 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(express.json());
-app.use(cors()); // Wildcard CORS for debugging
+
+// CORS - Allow all origins explicitly
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token']
+}));
+
+// Handle preflight requests
+app.options('*', cors());
+
 // app.use(helmet());
 
 app.get('/api/test', (req, res) => res.json({ status: 'ok', msg: 'Server is working' }));

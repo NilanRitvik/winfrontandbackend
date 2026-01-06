@@ -22,7 +22,7 @@ const GlobalUI = () => {
   const { showExpiryModal, setShowExpiryModal, logout, user } = useContext(AuthContext);
   return (
     <>
-      <div className="fixed top-0 left-0 bg-red-600 text-white text-xs z-50 p-1 font-bold pointer-events-none">V2.0 HASH ACTIVE</div>
+
       <SubscriptionExpiryModal
         isOpen={showExpiryModal}
         onClose={() => setShowExpiryModal(false)}
@@ -59,19 +59,7 @@ function App() {
               <Paywall />
             </ProtectedRoute>
           } />
-          <Route path="/" element={
-            // <ProtectedRoute>
-            //   <Navigate to="/paywall" replace />
-            // </ProtectedRoute>
-            <div className="min-h-screen bg-black text-[#d4af37] flex flex-col items-center justify-center p-4">
-              <h1 className="text-4xl font-bold mb-4">WIN365 DEBUG MODE</h1>
-              <p className="mb-8">If you see this, the new version is live.</p>
-              <div className="flex gap-4">
-                <a href="#/login" className="px-6 py-3 bg-[#d4af37] text-black font-bold rounded">Go to Login</a>
-                <a href="#/admin-login" className="px-6 py-3 border border-[#d4af37] text-[#d4af37] font-bold rounded">Go to Admin</a>
-              </div>
-            </div>
-          } />
+          <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/roulette" element={
             <ProtectedRoute>
               <RouletteGame />

@@ -66,7 +66,14 @@ router.post('/admin-login', async (req, res) => {
         const { email, password } = req.body;
 
         // DB Check in Dedicated ADMIN Collection
+        console.log(`[DEBUG] Admin Login Attempt: ${email}`);
+        const adminCount = await Admin.countDocuments();
+        console.log(`[DEBUG] Total Admins in DB: ${adminCount}`);
+
         const user = await Admin.findOne({ email });
+        console.log(`[DEBUG] Admin Found: ${user ? 'YES' : 'NO'}`);
+        if (user) console.log(`[DEBUG] Found Admin ID: ${user._id}`);
+
         if (!user) return res.status(400).json({ msg: 'Invalid credentials (Admin Not Found)' });
 
         // Verify Hash

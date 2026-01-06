@@ -11,11 +11,10 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(express.json());
-app.use(cors({
-    origin: true, // Reflects the request origin, allowing all
-    credentials: true
-}));
-app.use(helmet());
+app.use(cors()); // Wildcard CORS for debugging
+// app.use(helmet());
+
+app.get('/api/test', (req, res) => res.json({ status: 'ok', msg: 'Server is working' }));
 
 // Database Connection
 const LOCAL_FALLBACK = 'mongodb+srv://adminUser:5POPDN5Cwf2IipzZ@cluster0.ev4kdjx.mongodb.net/roulette-db?retryWrites=true&w=majority';

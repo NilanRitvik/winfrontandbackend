@@ -37,10 +37,8 @@ const Login = () => {
     return (
         <SplitAuthLayout title="Welcome Back" subtitle="Enter your credentials to access the exclusive lounge.">
 
-            {/* Version Marker - PROOF OF DEPLOYMENT */}
-            <div className="text-center mb-4">
-                <span className="text-[10px] bg-[#d4af37] text-black font-bold px-2 py-1 rounded">V3.0 OFFICIAL</span>
-            </div>
+            {/* Version Marker Removed */}
+
 
             {error && (
                 <div className="bg-red-900/40 border border-red-500/50 text-red-200 text-sm p-3 rounded mb-6 text-center shadow-[0_0_15px_rgba(255,0,0,0.2)]">

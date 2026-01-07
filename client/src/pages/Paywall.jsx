@@ -142,7 +142,7 @@ const Paywall = () => {
         {
             id: 'weekend-pass',
             name: 'Weekend Pass',
-            price: '₹699',
+            price: '₹999',
             duration: 172800000, // 48 hours (Sat + Sun coverage)
             type: 'Special',
             features: ['Active Sat-Sun Only', 'Weekend Special Access', 'Standard Tables']
@@ -151,7 +151,7 @@ const Paywall = () => {
         {
             id: 'pro-7d',
             name: '7 Day Pro',
-            price: '₹1499',
+            price: '₹1999',
             duration: 604800000, // 7 days
             type: 'Pro',
             isPopular: true,
@@ -160,7 +160,7 @@ const Paywall = () => {
         {
             id: 'pro-14d',
             name: '14 Day Pro',
-            price: '₹2499',
+            price: '₹2699',
             duration: 1209600000, // 14 days
             type: 'Pro',
             features: ['Access for 14 Days', 'VIP Tables', 'Priority Support']
@@ -267,6 +267,12 @@ const Paywall = () => {
                     Your payment request is currently under review by the administrator.
                     Access will be granted automatically upon approval.
                 </p>
+                <div className="bg-[#1a1a1a] p-4 rounded-lg border border-white/10 mb-6 text-xs text-gray-400 text-left">
+                    <p className="mb-2 font-bold text-[#d4af37]">Having trouble?</p>
+                    <p>If you experience any delay or issue, please contact:</p>
+                    <a href="mailto:support@winroulette365.com" className="text-white hover:underline block my-1 font-mono">support@winroulette365.com</a>
+                    <p className="mt-2 text-gray-500 italic">Tip: Try re-logging in if approval is confirmed.</p>
+                </div>
                 <div className="flex gap-4 justify-center">
                     <button
                         onClick={() => window.location.reload()}

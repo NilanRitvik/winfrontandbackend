@@ -38,13 +38,9 @@ const AdminAIPage = () => {
         e.preventDefault();
         setLoading(true);
 
-        // Validation: Check if 25 numbers
+        // Validation: Check if 25 numbers (REMOVED: User requested no restriction)
         const numArr = formData.numbers.split(',').map(n => n.trim()).filter(n => n !== '');
-        if (numArr.length !== 25) {
-            toast.error(`Please enter exactly 25 numbers. Currently: ${numArr.length}`);
-            setLoading(false);
-            return;
-        }
+
 
         try {
             await axios.post(`${API_BASE_URL}/admin-ai/update`, {
@@ -67,7 +63,7 @@ const AdminAIPage = () => {
 
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                    <label className="block text-gray-400 mb-2 uppercase text-xs font-bold">25 Numbers (Comma Separated)</label>
+                    <label className="block text-gray-400 mb-2 uppercase text-xs font-bold">Winning Numbers (Comma Separated)</label>
                     <textarea
                         name="numbers"
                         value={formData.numbers}
@@ -75,7 +71,7 @@ const AdminAIPage = () => {
                         className="w-full bg-black/50 border border-gray-700 rounded p-4 text-white font-mono focus:border-[#d4af37] focus:outline-none min-h-[120px]"
                         placeholder="0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20"
                     />
-                    <p className="text-xs text-gray-500 mt-2">Enter exactly 25 numbers, separated by commas.</p>
+                    <p className="text-xs text-gray-500 mt-2">Enter numbers separated by commas (No Limit).</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -180,11 +180,8 @@ const RouletteGame = () => {
     }, []);
 
     const handleGenerateAI = () => {
-        // Check if data has been extracted (implies files uploaded + extraction run)
-        if (extractedNumbers.length === 0 && extractedDozen.length === 0 && extractedHotCold.length === 0) {
-            toast.error("Please Upload Files & Extract Data first!");
-            return;
-        }
+        // Check removed: AI can now run without image extraction
+
 
         if (!aiData.numbers || aiData.numbers.length === 0) {
             toast.error("No AI Data Available / Not Set by Admin");

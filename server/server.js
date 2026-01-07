@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const helmet = require('helmet');
+const helmet = require('helmet'); // Optional security
 
 dotenv.config();
 
@@ -12,25 +12,18 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(express.json());
 
-// MANUAL CORS - Set headers on EVERY request
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-auth-token');
+// Standard CORS for Render
+// Should ideally restrict origin in production, but '*' is safe for initial debugging
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token']
+}));
 
-    // Handle preflight
-    if (req.method === 'OPTIONS') {
-        return res.status(200).end();
-    }
-    next();
-});
-
-// app.use(helmet());
-
-app.get('/api/test', (req, res) => res.json({ status: 'ok', msg: 'Server is working' }));
+// app.use(helmet()); 
 
 // Database Connection
-// FORCE CORRECT URI (Bypassing potential bad env vars)
+// Keeping Hardcoded URI as requested for stability, but best practice is process.env.MONGO_URI
 const MONGO_URI = 'mongodb+srv://adminUser:5POPDN5Cwf2IipzZ@cluster0.ev4kdjx.mongodb.net/roulette-db?retryWrites=true&w=majority';
 
 mongoose.connect(MONGO_URI)
@@ -51,13 +44,10 @@ app.use('/api/tickets', ticketRoute);
 app.use('/api/admin-ai', adminAIRoute);
 
 app.get('/', (req, res) => {
-    res.json({ message: 'Roulette Prediction API - V2 LIVE', timestamp: new Date() });
+    res.json({ message: 'Roulette Prediction API - Render Live', timestamp: new Date() });
 });
 
-// For Vercel/Serverless
-module.exports = app;
-
-// Only run server if called directly (dev mode)
-if (require.main === module) {
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-}
+// Start Server (Unconditional for Render)
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});

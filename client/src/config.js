@@ -1,12 +1,11 @@
-// Basic configuration helper
-// We default to the Vercel Production URL to ensure it works on deployment without env vars issues.
+// Configuration for Render Deployment
+// In Render Static Site "Environment" tab, set:
+// VITE_API_BASE_URL = https://your-render-backend-name.onrender.com/api
 
-const isProduction = import.meta.env.MODE === 'production';
+const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-// ALWAYS use the production backend if not explicitly localhost
-export const API_BASE_URL = 'https://win365v0-1.vercel.app/api';
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (isLocalhost ? 'http://localhost:5000/api' : '');
 
-// Fallback for local dev ONLY if needed (commented out to be safe)
-// export const API_BASE_URL = window.location.hostname === 'localhost'
-//    ? 'http://localhost:5000/api'
-//    : 'https://win365v0-1.vercel.app/api';
+if (!API_BASE_URL) {
+    console.error("API_BASE_URL is not set! Please set VITE_API_BASE_URL in Render Environment Variables.");
+}

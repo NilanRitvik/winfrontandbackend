@@ -128,7 +128,7 @@ const LegalPolicyModal = ({ isOpen, onClose }) => {
                     <section className="border-t border-white/10 pt-6 mt-6">
                         <h3 className="text-lg font-bold text-white mb-2"><span className="text-[#d4af37]">12.</span> Contact & Support</h3>
                         <p className="text-sm text-gray-400">For any questions related to this policy, subscriptions, or technical support:</p>
-                        <a href="mailto:support@win365.com" className="text-[#d4af37] font-bold hover:underline block mt-2">📧 support@win365.com</a>
+                        <a href="mailto:support@winroulette365.com" className="text-[#d4af37] font-bold hover:underline block mt-2">📧 support@winroulette365.com</a>
                     </section>
 
                 </div>

@@ -91,7 +91,7 @@ const AIChatWidget = ({ user }) => {
         // 3. START DEPOSIT FLOW
         if (lowerInput.includes('deposit') || lowerInput.includes('payment') || lowerInput.includes('fund') || lowerInput.includes('balance') || lowerInput.includes('issue')) {
             if (lowerInput.includes('refund')) {
-                responseText = "This request requires manual review. Please contact our support team at support@win365.com for further assistance.";
+                responseText = "This request requires manual review. Please contact our support team at support@winroulette365.com for further assistance.";
                 addAgentMessage(responseText);
                 return;
             }
@@ -121,13 +121,13 @@ const AIChatWidget = ({ user }) => {
         } else if (lowerInput.includes('game') || lowerInput.includes('support')) {
             responseText = "We support European Roulette, Lightning Roulette, Red Door, Fireball, VIP, and standard tables. One engine covers all these variations.";
         } else if (lowerInput.includes('contact') || lowerInput.includes('human') || lowerInput.includes('help')) {
-            responseText = "For further assistance, please contact our support team at support@win365.com.";
+            responseText = "For further assistance, please contact our support team at support@winroulette365.com.";
         } else if (lowerInput.includes('refund')) {
             responseText = "All subscriptions are non-refundable once activated as per our strict Refund Policy.";
         } else if (lowerInput.includes('ticket')) {
             responseText = "If you have a deposit issue, type 'deposit' to raise a ticket. For technical issues, please email support.";
         } else {
-            responseText = "I'm not sure about that specific detail. You can ask about plans, games, deposits, or general platform info. For complex queries, email support@win365.com.";
+            responseText = "I'm not sure about that specific detail. You can ask about plans, games, deposits, or general platform info. For complex queries, email support@winroulette365.com.";
         }
 
         // Simulated Delay
@@ -169,7 +169,7 @@ const AIChatWidget = ({ user }) => {
                             addAgentMessage("Thank you. Please log in to specific account to link this ticket properly. Raising anonymous ticket... Done.");
                         }
                     } catch (e) {
-                        addAgentMessage("System Error: Could not raise ticket. Please email support@win365.com.");
+                        addAgentMessage("System Error: Could not raise ticket. Please email support@winroulette365.com.");
                     }
                     setDepositFlow({ active: false, step: 0, data: { amount: '', date: '', utr: '' } });
                 } else {

@@ -147,8 +147,8 @@ const AboutUsModal = ({ isOpen, onClose }) => {
                             <a href="https://www.aichainzom" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#d4af37] hover:underline">
                                 <span>🌐</span> Developer Website: www.aichainzom
                             </a>
-                            <a href="mailto:support@win365.com" className="flex items-center gap-2 text-[#d4af37] hover:underline">
-                                <span>📧</span> support@win365.com
+                            <a href="mailto:support@winroulette365.com" className="flex items-center gap-2 text-[#d4af37] hover:underline">
+                                <span>📧</span> support@winroulette365.com
                             </a>
                         </div>
                     </section>

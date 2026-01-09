@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const Admin = require('./models/Admin');
 
 // HARDCODED CONNECTION (Same as server)
-const MONGO_URI = 'mongodb+srv://adminUser:5POPDN5Cwf2IipzZ@cluster0.ev4kdjx.mongodb.net/roulette-db?retryWrites=true&w=majority';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://adminUser:RNCBOb1FbStSGw1u@cluster0.ev4kdjx.mongodb.net/test?retryWrites=true&w=majority';
 
 const connectDB = async () => {
     try {

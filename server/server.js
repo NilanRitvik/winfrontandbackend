@@ -23,8 +23,8 @@ app.use(cors({
 // app.use(helmet()); 
 
 // Database Connection
-// Keeping Hardcoded URI as requested for stability, but best practice is process.env.MONGO_URI
-const MONGO_URI = 'mongodb+srv://adminUser:5POPDN5Cwf2IipzZ@cluster0.ev4kdjx.mongodb.net/roulette-db?retryWrites=true&w=majority';
+// Use Environment Variable first, fallback to user-provided global URI
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://adminUser:RNCBOb1FbStSGw1u@cluster0.ev4kdjx.mongodb.net/test?retryWrites=true&w=majority';
 
 mongoose.connect(MONGO_URI)
     .then(() => console.log('MongoDB Connected Successfully'))

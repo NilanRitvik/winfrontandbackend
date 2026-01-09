@@ -31,14 +31,14 @@ const updateAdmin = async () => {
 
         const newAdmin = new Admin({
             username: 'Admin',
-            email: 'purusothhrm@gmail.com',
+            email: 'purushthhrm@gmail.com',
             password: hashedPassword,
             role: 'admin'
         });
 
         await newAdmin.save();
 
-        console.log('New Admin Created: purusothhrm@gmail.com');
+        console.log('New Admin Created: purushthhrm@gmail.com');
 
     } catch (error) {
         console.error('Error updating admin:', error);
